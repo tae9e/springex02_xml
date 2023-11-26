@@ -7,6 +7,28 @@
 <%@include file="../includes/header.jsp"%>
 
 <html>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var result = '<c:out value="${result}"/>';
+	checkModal(result);
+	history.replaceState({,null,null});
+	function checkModal(result){
+		if(result ===''||history.state){
+			return;
+		}
+		if(parseInt(result)>{
+			$(".modal-body").html("게시글 "+parseInt(result)+"번이 등록되었습니다.");
+		}
+		$("#myModal").modal("show");
+	}
+	$("#regBtn").on("click",function({
+		self.location = "/board/register";
+	});
+					
+		});
+
+</script>
 <body>
 <div class="row">
 	<div class="col-lg-12">

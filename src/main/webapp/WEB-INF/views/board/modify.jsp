@@ -6,6 +6,8 @@
 <%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,18 +15,18 @@
 $(document).ready(function(){
 	var formObj = $("form");
 	$('button').on("click",function(e){
-		e.prventDefault();
+		e.preventDefault();
 		var operation=$(this).data("oper");
 		console.log(operation);
 		if(operation === 'remove'){
-			formObj.attr("action","/board.remove");
-		}else if(operation ==='list'){
+			formObj.attr("action","/board/remove");
+		}else if(operation === 'list'){
 			self.location="/board/list";
 			return;
 		}
 		formObj.submit();
-	})
-})
+	});
+});
 
 
 
@@ -55,8 +57,8 @@ $(document).ready(function(){
 						
 						<div class="form-group">
 							<label>Text area</label> 
-							<textarea class="form-control" rows="3" name='content'
-							readonly="readonly"><c:out value="${board.content }"/></textarea>
+							<textarea class="form-control" rows="3" name='content'>
+							<c:out value="${board.content }"/></textarea>
 						</div>
 						
 						<div class="form-group">
@@ -68,19 +70,19 @@ $(document).ready(function(){
 						<div class="form-group">
 							<label>RegDate</label> 
 							<input class="form-control"  name='regDate'
-							value='<fmt:formatDate pattern="yyyy/MM/dd" value = "$board.regdate}" />' readonly="readonly">
+							value='<fmt:formatDate pattern="yyyy/MM/dd" value = "${board.regdate }" />' readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label>Update Date</label> 
 							<input class="form-control"  name='updateDate'
-							value='<fmt:formatDate pattern="yyyy/MM/dd" value = "$board.updateDate}" />' readonly="readonly">
+							value='<fmt:formatDate pattern="yyyy/MM/dd" value = "${board.updateDate }" />' readonly="readonly">
 						</div>
 						
 						<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
 						<button type="submit" data-oper='remove' class="btn btn-default">Remove</button>
 						<button type="submit" data-oper='list' class="btn btn-default">List</button>
 						
-						
+						</form>
 						
 					
 						</div>

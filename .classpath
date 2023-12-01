@@ -41,6 +41,6 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/app/hi/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/app/hi/product/11.2.0/dbhome_1/jar 파일/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

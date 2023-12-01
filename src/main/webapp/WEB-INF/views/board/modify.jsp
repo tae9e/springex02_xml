@@ -5,10 +5,12 @@
 
 <%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
-<html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -21,8 +23,18 @@ $(document).ready(function(){
 		if(operation === 'remove'){
 			formObj.attr("action","/board/remove");
 		}else if(operation === 'list'){
-			self.location="/board/list";
-			return;
+			//move to list
+			formObj.attr("action","/board/list").attr("method","get");
+			var pageNumTag = $("input[name='[[pageNum]]']").clone();
+			var amountTag = $("input[name='amount']").clone();
+			var keywordTag = $("input[name='keyword']").clone();
+			var typeTag = $("input[name='type']").clone();
+			
+			formObj.empty();
+			formObj.append(pageNumTag);
+			formObj.append(amountTag);
+			formObj.append(keywordTag);
+			formObj.append(typeTag);
 		}
 		formObj.submit();
 	});
@@ -42,9 +54,16 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Board Read Page</div>
+				<div class="panel-heading">Board Modify Page</div>
 				<div class="panel-body">
 					<form role="form" action="/board/modify" method="post">
+					<input type="hidden" name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+					<input type="hidden" name='amount' value='<c:out value="${cri.amount }"/>'>
+					<input type="hidden" name='type' value='<c:out value="${cri.type }"/>'>
+					<input type="hidden" name='keyword' value='<c:out value="${cri.keyword }"/>'>
+					
+					
+					
 						<div class="form-group">
 							<label>Bno</label> <input class="form-control" name='bno'
 							value='<c:out value="${board.bno }"/>' readonly="readonly">
